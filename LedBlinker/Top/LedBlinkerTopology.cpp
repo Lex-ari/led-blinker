@@ -132,6 +132,12 @@ void configureTopology() {
     configurationTable.entries[2] = {.depth = 100, .priority = 1};
     // Allocation identifier is 0 as the MallocAllocator discards it
     comQueue.configure(configurationTable, 0, mallocator);
+
+    bool gpio_success = gpioDriver.open(13, Drv::LinuxGpioDriver::GpioDirection::GPIO_OUT);
+    if (!gpio_success) {
+        Fw::Logger::logMsg("[ERROR] Failed to open GPIO pin\n");
+    }
+
 }
 
 // Public functions for use in main program are namespaced with deployment name LedBlinker

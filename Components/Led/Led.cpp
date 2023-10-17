@@ -119,7 +119,7 @@ namespace Components {
             {
                 this->transitions = this->transitions + 1;
                 // TODO: Add an channel to report the number of LED transitions (this->transitions)
-                this->tlmWrite_LedTransitions(transitions);
+                this->tlmWrite_LedTransitions(this->transitions);
 
                 // Port may not be connected, so check before sending output
                 if (this->isConnected_gpioSet_OutputPort(0))
@@ -146,6 +146,8 @@ namespace Components {
 
             this->state = Fw::On::OFF;
             // TODO: Add an event to report the LED state (this->state).
+            this->tlmWrite_BlinkingState(this->state);
+          
           }
         }
     }

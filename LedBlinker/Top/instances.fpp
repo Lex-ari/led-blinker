@@ -104,6 +104,9 @@ module LedBlinker {
   # Passive component instances
   # ----------------------------------------------------------------------
 
+  @ Added GPIO driver
+  instance gpioDriver: Drv.LinuxGpioDriver base id 0x4C00
+
   @ Communications driver. May be swapped with other com drivers like UART or TCP
   @ Note: Here we have TCP reliable uplink and UDP (low latency) downlink
   instance comDriver: Drv.ByteStreamDriverModel base id 0x4000 \
