@@ -4,8 +4,30 @@ module Components {
 
         # One async command/port is required for active components
         # This should be overridden by the developers with a useful command/port
-        @ TODO
-        async command TODO opcode 0
+        @ Command to turn on or off the blinking LED
+        async command BLINKING_ON_OFF(
+            on_off: Fw.On @< Indicates whether the blinking should be on or off
+        )
+
+        @ Indicates we received an invalid argument.
+        event InvalidBlinkArgument(badArgument: Fw.On) \
+            severity warning low \
+            format "Invalid Blinking Argument: {}"
+
+        @ Reports the state we set to blinking.
+        event SetBlinkingState(state: Fw.On) \
+            severity activity high \
+            format "Set blinking state to {}."
+
+        @ Takes arg U32 type to indicate the set interval
+        event BlinkIntervalSet(interval: U32) \
+            severity activity high \
+            format "LEDblink interval set to {}"
+
+        @ Takes arg Fw.On type to indicate the LED has been driven to a different state
+        event LedState(on_off: Fw.On) \
+            severity activity low \
+            format "LED is {}"
 
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
