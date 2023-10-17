@@ -29,6 +29,21 @@ module Components {
             severity activity low \
             format "LED is {}"
 
+        @ Telemetry channel to report blinking state.
+        telemetry BlinkingState: Fw.On
+
+        @ Telemetry channel to LED Transistions
+        telemetry LedTransitions: U64
+
+        @ Blinking interval in rate group ticks
+        param BLINK_INTERVAL: U32
+
+        @ Port receiving calls from the rate group
+        sync input port run: Svc.Sched
+
+        @ Port sending calls to the GPIO driver
+        output port gpioSet: Drv.GpioWrite
+        
         ##############################################################################
         #### Uncomment the following examples to start customizing your component ####
         ##############################################################################

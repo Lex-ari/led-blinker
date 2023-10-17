@@ -36,6 +36,19 @@ namespace Components {
     PRIVATE:
 
       // ----------------------------------------------------------------------
+      // Handler implementations for user-defined typed input ports
+      // ----------------------------------------------------------------------
+
+      //! Handler implementation for run
+      //!
+      void run_handler(
+          const NATIVE_INT_TYPE portNum, /*!< The port number*/
+          NATIVE_UINT_TYPE context /*!< 
+      The call order
+      */
+      );
+
+      // ----------------------------------------------------------------------
       // Command handler implementations
       // ----------------------------------------------------------------------
 
@@ -56,6 +69,10 @@ namespace Components {
       U32 count; //! Keeps track of how many ticks the LED has been on for
       bool blinking; //! Flag: if true then LED blinking will occur else no blinking will happen
 
+      //! Emit parameter updated EVR
+      //!
+      void parameterUpdated(FwPrmIdType id /*!< The parameter ID*/
+      );
     };
 
 } // end namespace Components
