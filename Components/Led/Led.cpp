@@ -78,8 +78,10 @@ namespace Components {
 
     // Check the parameter ID is expected
     if (PARAMID_BLINK_INTERVAL == id) {
-        // Emit the blink interval set event
-        // TODO: Add an event with, severity activity high, named BlinkIntervalSet that takes in an argument of type U32 to report the blink interval.
+      // Emit the blink interval set event
+      // TODO: Add an event with, severity activity high, named BlinkIntervalSet that 
+      // takes in an argument of type U32 to report the blink interval.
+      this->log_ACTIVITY_HI_BlinkIntervalSet(interval);
     }
   }
 
@@ -117,6 +119,7 @@ namespace Components {
             {
                 this->transitions = this->transitions + 1;
                 // TODO: Add an channel to report the number of LED transitions (this->transitions)
+                this->tlmWrite_LedTransitions(transitions);
 
                 // Port may not be connected, so check before sending output
                 if (this->isConnected_gpioSet_OutputPort(0))
@@ -126,6 +129,7 @@ namespace Components {
 
                 // TODO: Add an event to report the LED state (new_state).
                 this->state = new_state;
+                this->tlmWrite_BlinkingState(new_state);
             }
 
             this->count = ((this->count + 1) >= interval) ? 0 : (this->count + 1);
