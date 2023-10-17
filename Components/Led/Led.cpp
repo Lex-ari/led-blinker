@@ -92,7 +92,7 @@ namespace Components {
     {
         // Read back the parameter value
         Fw::ParamValid isValid;
-        U32 interval = 0; // TODO: Get BLINK_INTERVAL parameter value
+        U32 interval = this->paramGet_BLINK_INTERVAL(isValid); // TODO: Get BLINK_INTERVAL parameter value
 
         // Force interval to be 0 when invalid or not set
         interval = ((Fw::ParamValid::INVALID == isValid) || (Fw::ParamValid::UNINIT == isValid)) ? 0 : interval;
