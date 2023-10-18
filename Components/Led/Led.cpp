@@ -92,8 +92,9 @@ namespace Components {
     {
         // Read back the parameter value
         Fw::ParamValid isValid;
-        U32 interval = this->paramGet_BLINK_INTERVAL(isValid); // TODO: Get BLINK_INTERVAL parameter value
-
+        // TODO: Get BLINK_INTERVAL parameter value
+        U32 interval = this->paramGet_BLINK_INTERVAL(isValid); 
+        
         // Force interval to be 0 when invalid or not set
         interval = ((Fw::ParamValid::INVALID == isValid) || (Fw::ParamValid::UNINIT == isValid)) ? 0 : interval;
 
@@ -129,7 +130,7 @@ namespace Components {
 
                 // TODO: Add an event to report the LED state (new_state).
                 this->state = new_state;
-                this->tlmWrite_BlinkingState(new_state);
+                this->log_ACTIVITY_LO_LedState(new_state);
             }
 
             this->count = ((this->count + 1) >= interval) ? 0 : (this->count + 1);
@@ -146,7 +147,7 @@ namespace Components {
 
             this->state = Fw::On::OFF;
             // TODO: Add an event to report the LED state (this->state).
-            this->tlmWrite_BlinkingState(this->state);
+            this->log_ACTIVITY_LO_LedState(this->state);
           
           }
         }
