@@ -4,9 +4,9 @@
 
 #include "Tester.hpp"
 
-TEST(Nominal, ToDo) {
+TEST(Nominal, TestBlinking) {
     Components::Tester tester;
-    tester.toDo();
+    tester.testBlinking();
 }
 
 int main(int argc, char **argv) {
